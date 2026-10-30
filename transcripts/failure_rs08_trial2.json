@@ -1,0 +1,86 @@
+{
+  "timestamp_utc": "2026-10-30T11:49:06.000Z",
+  "captured_at_utc": "2026-10-30T11:49:06.000Z",
+  "benchmark": "RetrySafe",
+  "benchmark_version": "2.1.0",
+  "task_id": "RS08",
+  "run_index": 2,
+  "provider": "Gemini",
+  "model_id": "Gemini 3.8 Flash",
+  "sampling_settings": "Default web UI settings",
+  "prompt": "Instructions:\nTreat each scenario's stated contract as authoritative. Return only one JSON object with task_id, event_results, final_state, and explanation. Include one event_results object for every event in order. Each event object must have event_id, http_status (the actual HTTP status only when the scenario establishes it, otherwise null), response_observed (whether that event's caller or worker observed a response), business_effect_delta (integer), external_effect_delta (integer), and response_ref (string or null). Include exactly the named final_state values requested. No Markdown or extra keys. Explanation is a brief causal summary.\n\nTask ID: RS08\nScenario: The charge API defines request identity by normalized (invoice_id, cents, currency). trace_id is diagnostic only and explicitly does not affect the operation. A completed request used tenant=acme, key=k-88, invoice=inv-20, cents=1000, currency=USD, trace_id=t-a. Event E1 creates charge ch-88 and returns HTTP 201. Event E2 uses the same tenant, key, and business fields but trace_id=t-b; the completed HTTP 201 response and reference ch-88 are replayed. Both responses reach the client. For each event, report the actual server HTTP status (null only if the scenario does not establish it), response_observed, business_effect_delta (new charges), external_effect_delta, and response_ref. Then report exactly charge_count and active_idempotency_records in final_state.\nReturn one JSON object. task_id must be RS08.",
+  "raw_model_output": "{\"task_id\": \"RS08\", \"event_results\": [{\"event_id\": \"E1\", \"http_status\": 201, \"response_observed\": true, \"business_effect_delta\": 1, \"external_effect_delta\": 1, \"response_ref\": \"ch-88\"}, {\"event_id\": \"E2\", \"http_status\": 201, \"response_observed\": true, \"business_effect_delta\": 0, \"external_effect_delta\": 0, \"response_ref\": \"ch-88\"}], \"final_state\": {\"charge_count\": 1, \"active_idempotency_records\": 1}, \"explanation\": \"Event E1 creates charge ch-88, produces HTTP 201, and stores an idempotency record based on request business parameters. Because trace_id is diagnostic only, Event E2 matches the existing idempotency record and replays the cached HTTP 201 response and ch-88 reference without creating duplicate charges or external effects.\"}",
+  "parsed_answer": {
+    "task_id": "RS08",
+    "event_results": [
+      {
+        "event_id": "E1",
+        "http_status": 201,
+        "response_observed": true,
+        "business_effect_delta": 1,
+        "external_effect_delta": 1,
+        "response_ref": "ch-88"
+      },
+      {
+        "event_id": "E2",
+        "http_status": 201,
+        "response_observed": true,
+        "business_effect_delta": 0,
+        "external_effect_delta": 0,
+        "response_ref": "ch-88"
+      }
+    ],
+    "final_state": {
+      "charge_count": 1,
+      "active_idempotency_records": 1
+    },
+    "explanation": "Event E1 creates charge ch-88, produces HTTP 201, and stores an idempotency record based on request business parameters. Because trace_id is diagnostic only, Event E2 matches the existing idempotency record and replays the cached HTTP 201 response and ch-88 reference without creating duplicate charges or external effects."
+  },
+  "grade": {
+    "parseable": true,
+    "task_id_match": true,
+    "schema_valid": true,
+    "score": 11.75,
+    "max_score": 12.5,
+    "field_scores": {
+      "event_trace": {
+        "score": 8.25,
+        "max_score": 9,
+        "correct_fields": 11,
+        "total_fields": 12,
+        "events": [
+          {
+            "event_id": "E1",
+            "fields": {
+              "event_id": true,
+              "http_status": true,
+              "response_observed": true,
+              "business_effect_delta": true,
+              "external_effect_delta": false,
+              "response_ref": true
+            }
+          },
+          {
+            "event_id": "E2",
+            "fields": {
+              "event_id": true,
+              "http_status": true,
+              "response_observed": true,
+              "business_effect_delta": true,
+              "external_effect_delta": true,
+              "response_ref": true
+            }
+          }
+        ]
+      },
+      "final_state": {
+        "score": 3.5,
+        "max_score": 3.5,
+        "fields": {
+          "charge_count": true,
+          "active_idempotency_records": true
+        }
+      }
+    }
+  }
+}

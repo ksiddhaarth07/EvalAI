@@ -1,0 +1,15 @@
+{
+  "benchmark": "EvalAI",
+  "version": "2.1.0",
+  "task_id": "RS06",
+  "title": "A retry after idempotency state expires",
+  "prompt": "A reservation API retains idempotency records for 24 hours. Once a record expires and is purged, it treats the same key as a new request. No other reservation identifier or reconciliation lookup exists. Event E1 is tenant=acme, key=k-66, body={room:R7}; it creates reservation res-77 with HTTP 201. Event E2 is the same tenant, key, and body 48 hours later, after the original record is purged; it creates reservation res-78 with HTTP 201. Both responses reach the client. For each event, report the actual server HTTP status (null only if the scenario does not establish it), response_observed, business_effect_delta (new reservations), external_effect_delta, and response_ref. Then report exactly reservation_count and active_idempotency_records in final_state.",
+  "event_ids": [
+    "E1",
+    "E2"
+  ],
+  "points": {
+    "event_trace": 9,
+    "final_state": 3.5
+  }
+}

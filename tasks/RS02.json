@@ -1,0 +1,15 @@
+{
+  "benchmark": "EvalAI",
+  "version": "2.1.0",
+  "task_id": "RS02",
+  "title": "A reused key with a changed amount",
+  "prompt": "A charge service binds (authenticated tenant, Idempotency-Key) to the first request's business payload. Reusing that identity with a different payload is rejected with HTTP 422 and makes no business mutation. Event E1 is tenant=acme, key=k-22, invoice=inv-10, cents=4200; the service accepts it as charge ch-22 with HTTP 201. Event E2 uses the same tenant and key but cents=8400. For each event, report the actual server HTTP status (null only if the scenario does not establish it), whether the client observed the response (both responses reach the client), business_effect_delta (new charges), external_effect_delta, and response_ref (null if no charge is created or replayed). Then report exactly charge_count, total_charge_cents, and active_idempotency_records in final_state.",
+  "event_ids": [
+    "E1",
+    "E2"
+  ],
+  "points": {
+    "event_trace": 9,
+    "final_state": 3.5
+  }
+}

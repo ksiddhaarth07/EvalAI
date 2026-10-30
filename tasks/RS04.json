@@ -1,0 +1,16 @@
+{
+  "benchmark": "EvalAI",
+  "version": "2.1.0",
+  "task_id": "RS04",
+  "title": "A completion record written before the order",
+  "prompt": "Review this flawed handler trace. It commits an idempotency row marked COMPLETED with stored success response HTTP 201, reference ord-44, before inserting the order row. Event E1 is that early completion-record commit; it creates no order and no HTTP response status has yet been generated. Event E2 is a process crash before the order insert; it creates no order and no HTTP response status is generated. Event E3 is a retry; the handler sees COMPLETED and returns the stored HTTP 201 / ord-44, observed by the client, without running the missing insert. For each event, report the actual server HTTP status (null when none has been generated), response_observed, business_effect_delta (new orders), external_effect_delta, and response_ref. Then report exactly order_count, completed_idempotency_records, and false_success_responses in final_state. Count a false_success_response when the service reports an order that does not exist.",
+  "event_ids": [
+    "E1",
+    "E2",
+    "E3"
+  ],
+  "points": {
+    "event_trace": 9,
+    "final_state": 3.5
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "benchmark": "EvalAI",
+  "version": "2.1.0",
+  "task_id": "RS08",
+  "title": "A diagnostic field changes on a semantic retry",
+  "prompt": "The charge API defines request identity by normalized (invoice_id, cents, currency). trace_id is diagnostic only and explicitly does not affect the operation. A completed request used tenant=acme, key=k-88, invoice=inv-20, cents=1000, currency=USD, trace_id=t-a. Event E1 creates charge ch-88 and returns HTTP 201. Event E2 uses the same tenant, key, and business fields but trace_id=t-b; the completed HTTP 201 response and reference ch-88 are replayed. Both responses reach the client. For each event, report the actual server HTTP status (null only if the scenario does not establish it), response_observed, business_effect_delta (new charges), external_effect_delta, and response_ref. Then report exactly charge_count and active_idempotency_records in final_state.",
+  "event_ids": [
+    "E1",
+    "E2"
+  ],
+  "points": {
+    "event_trace": 9,
+    "final_state": 3.5
+  }
+}

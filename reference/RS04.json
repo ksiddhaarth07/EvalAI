@@ -1,0 +1,35 @@
+{
+  "task_id": "RS04",
+  "event_results": [
+    {
+      "event_id": "E1",
+      "http_status": null,
+      "response_observed": false,
+      "business_effect_delta": 0,
+      "external_effect_delta": 0,
+      "response_ref": null
+    },
+    {
+      "event_id": "E2",
+      "http_status": null,
+      "response_observed": false,
+      "business_effect_delta": 0,
+      "external_effect_delta": 0,
+      "response_ref": null
+    },
+    {
+      "event_id": "E3",
+      "http_status": 201,
+      "response_observed": true,
+      "business_effect_delta": 0,
+      "external_effect_delta": 0,
+      "response_ref": "ord-44"
+    }
+  ],
+  "final_state": {
+    "order_count": 0,
+    "completed_idempotency_records": 1,
+    "false_success_responses": 1
+  },
+  "explanation": "Canonical reference solution for RS04"
+}

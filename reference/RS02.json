@@ -1,0 +1,27 @@
+{
+  "task_id": "RS02",
+  "event_results": [
+    {
+      "event_id": "E1",
+      "http_status": 201,
+      "response_observed": true,
+      "business_effect_delta": 1,
+      "external_effect_delta": 0,
+      "response_ref": "ch-22"
+    },
+    {
+      "event_id": "E2",
+      "http_status": 422,
+      "response_observed": true,
+      "business_effect_delta": 0,
+      "external_effect_delta": 0,
+      "response_ref": null
+    }
+  ],
+  "final_state": {
+    "charge_count": 1,
+    "total_charge_cents": 4200,
+    "active_idempotency_records": 1
+  },
+  "explanation": "Canonical reference solution for RS02"
+}

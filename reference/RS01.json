@@ -1,0 +1,26 @@
+{
+  "task_id": "RS01",
+  "event_results": [
+    {
+      "event_id": "E1",
+      "http_status": 201,
+      "response_observed": false,
+      "business_effect_delta": 1,
+      "external_effect_delta": 0,
+      "response_ref": "ch-81"
+    },
+    {
+      "event_id": "E2",
+      "http_status": 201,
+      "response_observed": true,
+      "business_effect_delta": 0,
+      "external_effect_delta": 0,
+      "response_ref": "ch-81"
+    }
+  ],
+  "final_state": {
+    "charge_count": 1,
+    "active_idempotency_records": 1
+  },
+  "explanation": "Canonical reference solution for RS01"
+}

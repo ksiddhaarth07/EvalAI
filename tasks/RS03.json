@@ -1,0 +1,16 @@
+{
+  "benchmark": "EvalAI",
+  "version": "2.1.0",
+  "task_id": "RS03",
+  "title": "A concurrent duplicate while provisioning is in flight",
+  "prompt": "The service atomically claims a key scoped by authenticated tenant before provisioning begins. A duplicate arriving while the first request is still running receives HTTP 409 and cannot start work. Event E1 is request A for tenant=acme, key=k-31, body={plan:pro}; it claims the key and remains in flight, so no HTTP response status has yet been generated. E2 is an identical request B arriving before A finishes; its 409 response reaches the client. E3 is A completing successfully with HTTP 201 and reference prov-31. For each event, report the actual server HTTP status (null if none has yet been generated or the scenario leaves it unknown), whether the client observed a response, business_effect_delta (new provisions), external_effect_delta, and response_ref (null if no completed resource response exists). Then report exactly provision_count and active_idempotency_records in final_state.",
+  "event_ids": [
+    "E1",
+    "E2",
+    "E3"
+  ],
+  "points": {
+    "event_trace": 9,
+    "final_state": 3.5
+  }
+}

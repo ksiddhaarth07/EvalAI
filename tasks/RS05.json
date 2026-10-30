@@ -1,0 +1,16 @@
+{
+  "benchmark": "EvalAI",
+  "version": "2.1.0",
+  "task_id": "RS05",
+  "title": "Outbox delivery after an ambiguous provider timeout",
+  "prompt": "An API commits an order and one outbox event in the same database transaction, then returns HTTP 202. A worker sends the outbox event to an email provider. The provider accepts the first send using event_id=evt-55, but the response times out; the provider has already created one email effect, and no HTTP status is known for that timed-out response. The provider durably deduplicates by event_id for longer than the retry window. Event E1 is the order/outbox transaction; E2 is the first provider attempt whose response is lost; E3 retries with the same event_id and receives the provider's HTTP 200 replay response. For each event, report the actual HTTP status if known, otherwise null; response_observed (for the API caller on E1 and the worker on E2/E3), business_effect_delta (new orders), external_effect_delta (new emails), and response_ref. Use ord-55 for the created order response; use evt-55 for a provider response; otherwise use null. Then report exactly order_count, outbox_event_count, email_effect_count, and provider_dedup_records in final_state.",
+  "event_ids": [
+    "E1",
+    "E2",
+    "E3"
+  ],
+  "points": {
+    "event_trace": 9,
+    "final_state": 3.5
+  }
+}

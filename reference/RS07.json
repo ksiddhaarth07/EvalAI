@@ -1,0 +1,27 @@
+{
+  "task_id": "RS07",
+  "event_results": [
+    {
+      "event_id": "E1",
+      "http_status": 201,
+      "response_observed": true,
+      "business_effect_delta": 1,
+      "external_effect_delta": 0,
+      "response_ref": "north-r1"
+    },
+    {
+      "event_id": "E2",
+      "http_status": 201,
+      "response_observed": true,
+      "business_effect_delta": 1,
+      "external_effect_delta": 0,
+      "response_ref": "south-r1"
+    }
+  ],
+  "final_state": {
+    "report_count": 2,
+    "north_report_count": 1,
+    "south_report_count": 1
+  },
+  "explanation": "Canonical reference solution for RS07"
+}

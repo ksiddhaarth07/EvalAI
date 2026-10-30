@@ -1,0 +1,36 @@
+{
+  "task_id": "RS05",
+  "event_results": [
+    {
+      "event_id": "E1",
+      "http_status": 202,
+      "response_observed": true,
+      "business_effect_delta": 1,
+      "external_effect_delta": 0,
+      "response_ref": "ord-55"
+    },
+    {
+      "event_id": "E2",
+      "http_status": null,
+      "response_observed": false,
+      "business_effect_delta": 0,
+      "external_effect_delta": 1,
+      "response_ref": null
+    },
+    {
+      "event_id": "E3",
+      "http_status": 200,
+      "response_observed": true,
+      "business_effect_delta": 0,
+      "external_effect_delta": 0,
+      "response_ref": "evt-55"
+    }
+  ],
+  "final_state": {
+    "order_count": 1,
+    "outbox_event_count": 1,
+    "email_effect_count": 1,
+    "provider_dedup_records": 1
+  },
+  "explanation": "Canonical reference solution for RS05"
+}

@@ -1,0 +1,15 @@
+{
+  "benchmark": "EvalAI",
+  "version": "2.1.0",
+  "task_id": "RS01",
+  "title": "A committed charge whose response is lost",
+  "prompt": "A POST /charges request uses tenant=acme, key=k-17, and body {invoice: inv-9, cents: 4200}. The server commits charge ch-81 and its idempotency record atomically. The server returns HTTP 201 with reference ch-81, but the network drops the response before the client receives it. The record remains within its retention window. This endpoint's explicit contract is that an identical retry within retention replays the original HTTP status and response reference without repeating the mutation. Event E1 is the original request; E2 is an identical retry, and its replayed response reaches the client. For each event, report the actual server HTTP status (null only if the scenario does not establish it), whether the client observed a response, business_effect_delta (new charges), external_effect_delta, and response_ref. Then report exactly charge_count and active_idempotency_records in final_state.",
+  "event_ids": [
+    "E1",
+    "E2"
+  ],
+  "points": {
+    "event_trace": 9,
+    "final_state": 3.5
+  }
+}

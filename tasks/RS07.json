@@ -1,0 +1,15 @@
+{
+  "benchmark": "EvalAI",
+  "version": "2.1.0",
+  "task_id": "RS07",
+  "title": "Two tenants choose the same raw key",
+  "prompt": "A reporting API defines request identity as (authenticated tenant, Idempotency-Key). Tenant north uses key=shared-7 to create report north-r1; tenant south independently uses the same raw key to create report south-r1. Both are new requests, both receive HTTP 201, and both responses reach their respective clients. Event E1 is the north request; E2 is the south request. For each event, report the actual server HTTP status (null only if the scenario does not establish it), response_observed, business_effect_delta (new reports), external_effect_delta, and response_ref. Then report exactly report_count, north_report_count, and south_report_count in final_state.",
+  "event_ids": [
+    "E1",
+    "E2"
+  ],
+  "points": {
+    "event_trace": 9,
+    "final_state": 3.5
+  }
+}

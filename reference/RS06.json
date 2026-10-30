@@ -1,0 +1,26 @@
+{
+  "task_id": "RS06",
+  "event_results": [
+    {
+      "event_id": "E1",
+      "http_status": 201,
+      "response_observed": true,
+      "business_effect_delta": 1,
+      "external_effect_delta": 0,
+      "response_ref": "res-77"
+    },
+    {
+      "event_id": "E2",
+      "http_status": 201,
+      "response_observed": true,
+      "business_effect_delta": 1,
+      "external_effect_delta": 0,
+      "response_ref": "res-78"
+    }
+  ],
+  "final_state": {
+    "reservation_count": 2,
+    "active_idempotency_records": 1
+  },
+  "explanation": "Canonical reference solution for RS06"
+}
